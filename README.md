@@ -1,5 +1,5 @@
 # Fault-tolerant Cinder volume driver
-OpenStack Cinder Fault-Tolerant Driver based on LVM
+OpenStack Cinder volume fault-tolerant driver based on LVM
 
 # Features
 - Create a fault-tolerant OpenStack Cinder volume service with data replication on backup hosts.
