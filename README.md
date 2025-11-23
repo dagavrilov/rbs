@@ -2,7 +2,7 @@
 OpenStack Cinder Fault-Tolerant Driver based on LVM
 
 # Features
-- Create a fault-tolerant OpenStack Cinder storage resource/service with data replication on backup hosts.
+- Create a fault-tolerant OpenStack Cinder volume service with data replication on backup hosts.
 - Disconnect block device volumes to one of the backup storage nodes in the event of a primary storage node failure.
 - Freeze - disables block device lifecycle management operations while maintaining data access during a disaster.
 - Restore to the original state, ensuring operations on the backup device as soon as it becomes available/functional.
