@@ -225,3 +225,31 @@ openstack volume show caaa7f09-c8ca-4dc9-9205-2bbaed378482
 | user_id                        | 993d0e88b013438fb2b8ce6e4e77459b     |
 +--------------------------------+--------------------------------------+
 ```
+Recovering from a failed storage node
+```
+openstack volume service list --long
++------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
+| Binary           | Host         | Zone | Status   | State | Updated At                 | Disabled Reason                                               |
++------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
+| cinder-scheduler | hci-0001     | AZ01 | enabled  | up    | 2025-11-18T12:47:18.000000 | None                                                          |
+| cinder-scheduler | hci-0002     | AZ01 | enabled  | up    | 2025-11-18T12:47:23.000000 | None                                                          |
+| cinder-scheduler | hci-0003     | AZ01 | enabled  | up    | 2025-11-18T12:47:21.000000 | None                                                          |
+| cinder-volume    | hci-0001@EBS | AZ01 | enabled  | up    | 2025-11-18T12:47:31.000000 | None                                                          |
+| cinder-volume    | hci-0002@EBS | AZ01 | disabled | up    | 2025-11-18T12:47:23.000000 | frozen                                                        |
+| cinder-volume    | hci-0003@SBS | AZ01 | enabled  | up    | 2025-11-18T12:47:17.000000 | None                                                          |
++------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
+cinder thaw-host hci-0002@EBS
+cinder failover-host hci-0001@EBS --backend_id hci-0002@EBS
+
+openstack volume service list --long
++------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
+| Binary           | Host         | Zone | Status   | State | Updated At                 | Disabled Reason                                               |
++------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
+| cinder-scheduler | hci-0001     | AZ01 | enabled  | up    | 2025-11-18T12:47:48.000000 | None                                                          |
+| cinder-scheduler | hci-0002     | AZ01 | enabled  | up    | 2025-11-18T12:47:53.000000 | None                                                          |
+| cinder-scheduler | hci-0003     | AZ01 | enabled  | up    | 2025-11-18T12:47:54.000000 | None                                                          |
+| cinder-volume    | hci-0001@EBS | AZ01 | disabled | up    | 2025-11-18T12:47:54.000000 | failed-over                                                   |
+| cinder-volume    | hci-0002@EBS | AZ01 | enabled  | up    | 2025-11-18T12:47:55.000000 | None                                                          |
+| cinder-volume    | hci-0003@SBS | AZ01 | enabled  | up    | 2025-11-18T12:47:58.000000 | None                                                          |
++------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
+```
