@@ -8,15 +8,15 @@ OpenStack Cinder volume fault-tolerant driver based on LVM
 - Restore to the original state, ensuring operations on the backup device as soon as it becomes available/functional.
 - Thaw - completely unlocks block device lifecycle management operations.
 - Thin and thick volumes
-- Create, delete, mount, and dismount volumes.
-- Create, view, and delete volume frames.
-- Create a volume from a volume snapshot.
-- Copy a machine behavior image to a volume.
-- Copy a volume in a machine behavior image.
-- Volume cloning.
+- Create, delete, mount, and unmount volume
+- Create, view, and delete volume
+- Create a volume from a volume snapshot
+- Copy image to a volume
+- Copy a volume to image
+- Clone volume
 - Migrating a volume between storage hosts
-- Changing the block device type (reprint)
-- Resizing a volume
+- Retyping volume
+- Volime resizing
 - Compatibility with Python 3
 
 # Driver installation
