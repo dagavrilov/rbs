@@ -71,7 +71,6 @@ openstack volume service list --long
 +------------------+--------------+------+---------+-------+----------------------------+---------------------------------------------------------------+
 | cinder-scheduler | hci-0001     | AZ01 | enabled | up    | 2025-11-18T12:41:31.000000 | None                                                          |
 | cinder-scheduler | hci-0002     | AZ01 | enabled | up    | 2025-11-18T12:41:33.000000 | None                                                          |
-| cinder-scheduler | hci-0003     | AZ01 | enabled | up    | 2025-11-18T12:41:31.000000 | None                                                          |
 | cinder-volume    | hci-0001@EBS | AZ01 | enabled | up    | 2025-11-18T12:41:27.000000 | None                                                          |
 | cinder-volume    | hci-0002@EBS | AZ01 | enabled | up    | 2025-11-18T12:41:25.000000 | None                                                          |
 +------------------+--------------+------+---------+-------+----------------------------+---------------------------------------------------------------+
@@ -84,7 +83,6 @@ openstack volume service list --long
 +------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
 | cinder-scheduler | hci-0001     | AZ01 | enabled  | up    | 2025-11-18T12:42:51.000000 | None                                                          |
 | cinder-scheduler | hci-0002     | AZ01 | enabled  | up    | 2025-11-18T12:42:53.000000 | None                                                          |
-| cinder-scheduler | hci-0003     | AZ01 | enabled  | up    | 2025-11-18T12:42:31.000000 | None                                                          |
 | cinder-volume    | hci-0001@EBS | AZ01 | enabled  | up    | 2025-11-18T12:42:28.000000 | None                                                          |
 | cinder-volume    | hci-0002@EBS | AZ01 | disabled | up    | 2025-11-18T12:42:24.000000 | failed-over                                                   |
 +------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
@@ -96,7 +94,6 @@ openstack volume type list
 | ID                                   | Name        | Is Public |
 +--------------------------------------+-------------+-----------+
 | 387e6744-52ba-441b-8848-969ff8541885 | EBS         | True      |
-| 5a09faad-d740-46de-8655-367117190e63 | SBS         | True      |
 | 03dffb4d-58bc-438b-84ed-a57c93e6d177 | __DEFAULT__ | False     |
 +--------------------------------------+-------------+-----------+
 
@@ -168,10 +165,8 @@ openstack volume service list --long
 +------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
 | cinder-scheduler | hci-0001     | AZ01 | enabled  | up    | 2025-11-18T12:45:31.000000 | None                                                          |
 | cinder-scheduler | hci-0002     | AZ01 | enabled  | up    | 2025-11-18T12:45:33.000000 | None                                                          |
-| cinder-scheduler | hci-0003     | AZ01 | enabled  | up    | 2025-11-18T12:45:31.000000 | None                                                          |
 | cinder-volume    | hci-0001@EBS | AZ01 | enabled  | down  | 2025-11-18T12:45:27.000000 | None                                                          |
 | cinder-volume    | hci-0002@EBS | AZ01 | disabled | up    | 2025-11-18T12:45:24.000000 | failed-over                                                   |
-| cinder-volume    | hci-0003@SBS | AZ01 | enabled  | up    | 2025-11-18T12:45:24.000000 | None                                                          |
 +------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
 
 cinder failover-host hci-0002@EBS --backend_id default
@@ -185,10 +180,8 @@ openstack volume service list --long
 +------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
 | cinder-scheduler | hci-0001     | AZ01 | enabled  | up    | 2025-11-18T12:46:22.000000 | None                                                          |
 | cinder-scheduler | hci-0002     | AZ01 | enabled  | up    | 2025-11-18T12:46:34.000000 | None                                                          |
-| cinder-scheduler | hci-0003     | AZ01 | enabled  | up    | 2025-11-18T12:46:31.000000 | None                                                          |
 | cinder-volume    | hci-0001@EBS | AZ01 | enabled  | down  | 2025-11-18T12:46:37.000000 | None                                                          |
 | cinder-volume    | hci-0002@EBS | AZ01 | disabled | up    | 2025-11-18T12:46:34.000000 | frozen                                                        |
-| cinder-volume    | hci-0003@SBS | AZ01 | enabled  | up    | 2025-11-18T12:46:34.000000 | None                                                          |
 +------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
 ```
 User access to the recovery volume. The volume must be detached and attached again.
@@ -233,10 +226,8 @@ openstack volume service list --long
 +------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
 | cinder-scheduler | hci-0001     | AZ01 | enabled  | up    | 2025-11-18T12:47:18.000000 | None                                                          |
 | cinder-scheduler | hci-0002     | AZ01 | enabled  | up    | 2025-11-18T12:47:23.000000 | None                                                          |
-| cinder-scheduler | hci-0003     | AZ01 | enabled  | up    | 2025-11-18T12:47:21.000000 | None                                                          |
 | cinder-volume    | hci-0001@EBS | AZ01 | enabled  | up    | 2025-11-18T12:47:31.000000 | None                                                          |
 | cinder-volume    | hci-0002@EBS | AZ01 | disabled | up    | 2025-11-18T12:47:23.000000 | frozen                                                        |
-| cinder-volume    | hci-0003@SBS | AZ01 | enabled  | up    | 2025-11-18T12:47:17.000000 | None                                                          |
 +------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
 cinder thaw-host hci-0002@EBS
 cinder failover-host hci-0001@EBS --backend_id hci-0002@EBS
@@ -247,9 +238,7 @@ openstack volume service list --long
 +------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
 | cinder-scheduler | hci-0001     | AZ01 | enabled  | up    | 2025-11-18T12:47:48.000000 | None                                                          |
 | cinder-scheduler | hci-0002     | AZ01 | enabled  | up    | 2025-11-18T12:47:53.000000 | None                                                          |
-| cinder-scheduler | hci-0003     | AZ01 | enabled  | up    | 2025-11-18T12:47:54.000000 | None                                                          |
 | cinder-volume    | hci-0001@EBS | AZ01 | disabled | up    | 2025-11-18T12:47:54.000000 | failed-over                                                   |
 | cinder-volume    | hci-0002@EBS | AZ01 | enabled  | up    | 2025-11-18T12:47:55.000000 | None                                                          |
-| cinder-volume    | hci-0003@SBS | AZ01 | enabled  | up    | 2025-11-18T12:47:58.000000 | None                                                          |
 +------------------+--------------+------+----------+-------+----------------------------+---------------------------------------------------------------+
 ```
