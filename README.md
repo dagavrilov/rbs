@@ -24,13 +24,13 @@ This driver utilizes Openstack Cinder Replication API to ensure high availabilit
 
 Get source code:
 ```
-git clone https://gitlab.com/ovtsolutions/ev3.git 
+git clone https://github.com/dagavrilov/rbs.git
 ```
 
 ```
 sudo apt install lvm2 targetcli-fb python3-rtslib-fb drbd-utils -y
-sudo cp ev3/etc/cinder/rootwrap.d/ev3.filters /etc/cinder/rootwrap.d/
-sudo cp -r ev3/cinder/volume/drivers/ovt /usr/lib/python3/dist-packages/cinder/volume/drivers/
+sudo cp rbs/etc/cinder/rootwrap.d/ev3.filters /etc/cinder/rootwrap.d/
+sudo cp -r rbs/cinder/volume/drivers/ovt /usr/lib/python3/dist-packages/cinder/volume/drivers/
 ```
 
 # Openstack Cinder block device type with replication support creation
