@@ -1,0 +1,4 @@
+[Filters]
+# filter for cinder/volume/drivers/ovt/ev3.py
+vgdisplay: CommandFilter, vgdisplay, root
+drbdadm: CommandFilter, /sbin/drbdadm, root
